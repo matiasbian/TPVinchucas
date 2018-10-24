@@ -27,7 +27,7 @@ public class Muestra {
 	}
 	
 	public String aliasUsuario() {
-		return "";
+		return user.getAlias();
 	}
 	
 	public Ubicacion ubicacion() {
