@@ -2,19 +2,17 @@ package Vinchucas;
 
 public class Participante{
 
-	public enum nivelConocimiento{
-		basico, experto;
-	}
 	
 	String nickName;
-	nivelConocimiento knowledge;
+	NivelParticipante knowledge;
 	String envios;
 	String revisiones;
 	String documentacion;
+	private NivelParticipante nivelParticipante;
 	
-	public Participante(String nick, nivelConocimiento knowledge, String envios, String revisiones,String documentacion){
+	public Participante(String nick, NivelParticipante knowledge, String envios, String revisiones,String documentacion){
 		this.nickName = nickName;
-		this.nivelConocimiento = knowledge;
+		this.knowledge = knowledge;
 		this.envios = envios;
 		this.revisiones = revisiones;
 		this.documentacion = documentacion;
@@ -24,8 +22,8 @@ public class Participante{
 		return nickName;
 	}
 	
-	public nivelConocimiento nConocimiento(){
-		return nivelConocimiento;
+	public NivelParticipante nConocimiento(){
+		return knowledge;
 	}
 	
 	public String envios(){
@@ -38,5 +36,10 @@ public class Participante{
 	
 	public String documentacion(){
 		return documentacion;
+	}
+
+	public int calidadValoracion() {
+		// TODO Auto-generated method stub
+		return nivelParticipante.valorar();
 	}
 }

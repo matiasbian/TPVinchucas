@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
+import Vinchucas.Bajo;
 import Vinchucas.Muestra;
 import Vinchucas.Muestra.Vinchuca;
 import Vinchucas.Ubicacion;
@@ -55,6 +56,12 @@ class TestMuestras {
 		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
 		assertEquals(muestra1.ubicacion().getLatitud(), 150);
 		assertEquals(muestra1.ubicacion().getLongitud(), 300);
+	}
+	
+	@Test
+	void testNivelVerificacionBajo() {
+		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
+		assertEquals(Bajo.class, muestra1.getNivelVerificacion().getClass());
 	}
 
 }
