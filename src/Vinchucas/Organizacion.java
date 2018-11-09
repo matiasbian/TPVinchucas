@@ -3,7 +3,7 @@ package Vinchucas;
 public class Organizacion {
 
 	public enum TipoOrganizacion {
-		Salud, Educativa, Cultural, Asistencia
+	    Salud, Educativa, Cultural, Asistencia
 	}
 	
 	private Ubicacion ubicacion;
@@ -13,7 +13,7 @@ public class Organizacion {
 public Organizacion(Ubicacion ubicacion, TipoOrganizacion tipo, int cantidad) {
 	this.ubicacion = ubicacion;
 	this.tipo = tipo;
-    this.cantEmpleados = cantidad;
+        this.cantEmpleados = cantidad;
 }
 
 public Ubicacion ubicacion() {
