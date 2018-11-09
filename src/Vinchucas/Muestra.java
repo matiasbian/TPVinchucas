@@ -10,15 +10,15 @@ public class Muestra {
 	
 	Vinchuca tipoVinchuca;
 	String fotoVinchuca;
-	Usuario user;
+	Participante user;
 	Ubicacion ubi;
 	private NivelVerificacion nivelVerificacion;
 	private ArrayList<Verificacion> verificaciones = new ArrayList<Verificacion>();
 	
-	public Muestra (Vinchuca vin, String fotoVin, Ubicacion ubi,Usuario user) {
+	public Muestra (Vinchuca vin, String fotoVin, Ubicacion ubi,Participante usuario) {
 		this.tipoVinchuca = vin;
 		this.fotoVinchuca = fotoVin;
-		this.user = user;
+		this.user = usuario;
 		this.ubi = ubi;
 		this.nivelVerificacion = new Bajo();
 	}
@@ -32,7 +32,7 @@ public class Muestra {
 	}
 	
 	public String aliasUsuario() {
-		return user.getAlias();
+		return user.nickName();
 	}
 	
 	public Ubicacion ubicacion() {
@@ -40,11 +40,16 @@ public class Muestra {
 	}
 
 	public NivelVerificacion getNivelVerificacion() {
+		nivelVerificacion.calcular(this);
 		return nivelVerificacion;
 	}
 
 	public ArrayList<Verificacion> verificaciones() {
 		return verificaciones ;
+	}
+	
+	public void addVerificaciones(Verificacion v) {
+		verificaciones.add(v) ;
 	}
 
 	public NivelVerificacion getNivelVerificacion(NivelVerificacion n) {

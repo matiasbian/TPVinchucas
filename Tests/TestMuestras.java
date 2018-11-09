@@ -4,30 +4,29 @@ import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
+import Vinchucas.Alto;
 import Vinchucas.Bajo;
+import Vinchucas.Medio;
 import Vinchucas.Muestra;
 import Vinchucas.Muestra.Vinchuca;
 import Vinchucas.Ubicacion;
-import Vinchucas.Usuario;
-
+import Vinchucas.Verificacion;
+import Vinchucas.Participante;
 import static org.mockito.Mockito.*;
 
 class TestMuestras {
 	Muestra muestra1;
 	Ubicacion ubicacion1;
-	Usuario usuario ;
+	Participante usuario ;
+	Verificacion v;
 	@Before
 	void Init() {
-		usuario = mock(Usuario.class);
+		usuario = mock(Participante.class);
 		ubicacion1 = new Ubicacion(120, 15);
-		
+		v = new Verificacion();
 	}
 	
-	@Test
-	void testVerificoFotoVinchuca() {
-		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
-		assertEquals("vinchuca.bmp", muestra1.fotoVinchuca());
-	}
+
 	@Test
 	void testTipoVinchucaFotografiada() {
 		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
@@ -42,9 +41,9 @@ class TestMuestras {
 	
 	@Test
 	void testAliasUsuario() {
-		usuario = mock(Usuario.class);
+		usuario = mock(Participante.class);
+		when(usuario.nickName()).thenReturn("MatiBian");
 		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
-		when(usuario.getAlias()).thenReturn("MatiBian");
 		assertEquals("MatiBian", muestra1.aliasUsuario());
 	}
 	
@@ -62,6 +61,27 @@ class TestMuestras {
 	void testNivelVerificacionBajo() {
 		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
 		assertEquals(Bajo.class, muestra1.getNivelVerificacion().getClass());
+	}
+	
+	@Test
+	void testNivelVerificacionMedio() {
+		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
+		muestra1.setNivelVerificacion(new Medio());
+		assertEquals(Medio.class, muestra1.getNivelVerificacion().getClass());
+	}
+	
+	@Test
+	void testNivelVerificacionAlto() {
+		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
+		muestra1.setNivelVerificacion(new Alto());
+		assertEquals(Alto.class, muestra1.getNivelVerificacion().getClass());
+	}
+	
+	@Test
+	void testAddVerificacion() {
+		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
+		muestra1.addVerificaciones(v);
+		assertEquals(muestra1.verificaciones().size(),1);
 	}
 
 }
