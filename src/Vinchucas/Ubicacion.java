@@ -1,16 +1,22 @@
-package Vinchucas;
+package integrador;
 
 public class Ubicacion {
 
-	public Object getLatitud() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	private double latitud;
+	private double longitud;
 	
-	public Object getLongitud() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+public Ubicacion (double lat, double lon) {
+	this.latitud = lat;
+	this.longitud = lon;
+}
 
+
+public double latitud() {
+	return this.latitud;
+}
+
+public double longitud() {
+	return this.longitud;
+}
 
 }
