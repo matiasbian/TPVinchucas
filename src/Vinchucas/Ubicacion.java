@@ -1,4 +1,4 @@
-package integrador;
+package Vinchucas;
 
 public class Ubicacion {
 
