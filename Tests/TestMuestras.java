@@ -3,6 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import Vinchucas.Alto;
 import Vinchucas.Bajo;
@@ -23,7 +24,7 @@ class TestMuestras {
 	void Init() {
 		usuario = mock(Participante.class);
 		ubicacion1 = new Ubicacion(120, 15);
-		v = new Verificacion();
+		v = Mockito.mock(Verificacion.class);
 	}
 	
 

@@ -28,4 +28,19 @@ public int cantidadDeEmpleados() {
 	return this.cantEmpleados;
 }
 
+public void setCantEmpleados(int i) {
+	this.cantEmpleados = i;
+	
+}
+
+public void setUbicacion(Ubicacion ubicacion) {
+	this.ubicacion = ubicacion;
+	
+}
+
+public void setTipo(TipoOrganizacion tipo) {
+	this.tipo = tipo;
+	
+}
+
 }
