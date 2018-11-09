@@ -1,21 +1,19 @@
 package Vinchucas;
 
+import java.util.ArrayList;
+
 public class Participante{
 
 	
 	String nickName;
 	NivelParticipante knowledge;
-	String envios;
-	String revisiones;
-	String documentacion;
+	ArrayList<Muestra> muestras;
+	ArrayList<Verificacion> verificaciones;
 	private NivelParticipante nivelParticipante;
 	
 	public Participante(String nick, NivelParticipante knowledge, String envios, String revisiones,String documentacion){
 		this.nickName = nickName;
 		this.knowledge = knowledge;
-		this.envios = envios;
-		this.revisiones = revisiones;
-		this.documentacion = documentacion;
 	}
 	
 	public String nickName(){
@@ -26,20 +24,15 @@ public class Participante{
 		return knowledge;
 	}
 	
-	public String envios(){
-		return envios;
+	public ArrayList<Muestra> muestras(){
+		return muestras;
 	}
 	
-	public String revisiones(){
-		return revisiones;
+	public ArrayList<Verificacion> verificaciones(){
+		return verificaciones;
 	}
 	
-	public String documentacion(){
-		return documentacion;
-	}
-
 	public int calidadValoracion() {
-		// TODO Auto-generated method stub
 		return nivelParticipante.valorar();
 	}
 }

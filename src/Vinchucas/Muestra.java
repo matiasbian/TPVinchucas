@@ -55,5 +55,7 @@ public class Muestra {
 		nivelVerificacion = n;
 	}
 	
-	
+	public Ubicacion getUbicacion() {
+		return this.ubi;
+	}
 }

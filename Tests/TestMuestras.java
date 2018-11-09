@@ -19,7 +19,7 @@ class TestMuestras {
 	@Before
 	void Init() {
 		usuario = mock(Usuario.class);
-		ubicacion1 = new Ubicacion();
+		ubicacion1 = new Ubicacion(120, 15);
 		
 	}
 	
@@ -51,11 +51,11 @@ class TestMuestras {
 	@Test
 	void testUbicacionVinchuca() {
 		ubicacion1 = mock(Ubicacion.class);
-		when(ubicacion1.getLatitud()).thenReturn(150);
-		when(ubicacion1.getLongitud()).thenReturn(300);
+		when(ubicacion1.latitud()).thenReturn(150.0);
+		when(ubicacion1.longitud()).thenReturn(300.0);
 		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
-		assertEquals(muestra1.ubicacion().getLatitud(), 150);
-		assertEquals(muestra1.ubicacion().getLongitud(), 300);
+		assertEquals(muestra1.ubicacion().latitud(), 150.0);
+		assertEquals(muestra1.ubicacion().longitud(), 300.0);
 	}
 	
 	@Test
