@@ -1,13 +1,11 @@
-package integrador;
+package Vinchucas;
 
 import java.util.ArrayList;
-import java
 
 public class OperacionesUbicacion {
 
-
 public static double distanciaEntreDosUbicaciones(Ubicacion ubi1, Ubicacion ubi2) {  
-        double radioTierra = 6371; //en kilómetros
+        double radioTierra = 6371; //en kilÃ³metros
         double dLat = Math.toRadians(ubi2.latitud() - ubi1.latitud());
         double dLng = Math.toRadians(ubi2.longitud() - ubi1.longitud());  
         double sindLat = Math.sin(dLat / 2);
@@ -21,13 +19,11 @@ public static double distanciaEntreDosUbicaciones(Ubicacion ubi1, Ubicacion ubi2
 }
 
 public ArrayList<Ubicacion> ubicacionesAMenosDe(ArrayList<Ubicacion> Ubicaciones, distancia) {
-	return ArrayList.
+	return
 }
 
 public ArrayList<Muestra> muestrasAMenosDe(ArrayList<Muestra> Muestras, distancia) {
 	return 
 }
-	
-	
 	
 }
