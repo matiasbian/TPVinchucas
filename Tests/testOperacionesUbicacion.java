@@ -18,6 +18,31 @@ class testOperacionesUbicacion {
 		
 		
 	}
+	
+	void initUbicaciones() {
+		u1 = Mockito.mock(Ubicacion.class);
+		u2 = Mockito.mock(Ubicacion.class);
+		u3 = Mockito.mock(Ubicacion.class);
+		u4 = Mockito.mock(Ubicacion.class);
+		Mockito.when(u1.latitud()).thenReturn(150.0);
+		Mockito.when(u1.longitud()).thenReturn(20.0);
+		Mockito.when(u2.latitud()).thenReturn(70.0);
+		Mockito.when(u2.longitud()).thenReturn(25.0);
+
+	}
+	
+	void InitMuestras() {
+		m1 = Mockito.mock(Muestra.class);
+		m2 = Mockito.mock(Muestra.class);
+		m3 = Mockito.mock(Muestra.class);
+		m4 = Mockito.mock(Muestra.class);
+		Mockito.when(m1.getUbicacion()).thenReturn(u1);
+		Mockito.when(m2.getUbicacion()).thenReturn(u2);
+		Mockito.when(m3.getUbicacion()).thenReturn(u3);
+		Mockito.when(m4.getUbicacion()).thenReturn(u4);
+	}
+	
+	
 	@Test
 	void testDistanciaNulaEntreDosPuntos() {
 		u1 = Mockito.mock(Ubicacion.class);
@@ -26,7 +51,7 @@ class testOperacionesUbicacion {
 		Mockito.when(u1.longitud()).thenReturn(200.0);
 		Mockito.when(u2.latitud()).thenReturn(150.0);
 		Mockito.when(u2.longitud()).thenReturn(200.0);
-		assertEquals(OperacionesUbicacion.distanciaEntreDosUbicaciones(u1, u2),0);
+		assertEquals(new OperacionesUbicacion().distanciaEntreDosUbicaciones(u1, u2),0);
 	}
 	
 	@Test
@@ -64,36 +89,15 @@ class testOperacionesUbicacion {
 		Mockito.when(u4.longitud()).thenReturn(24.0);
 		InitMuestras();
 		
-		ArrayList<Muestra> lista = new ArrayList<Muestra>();
-		lista.add(m1);
-		lista.add(m2);
-		lista.add(m3);
-		lista.add(m4);
+		ArrayList<Muestra> listaM = new ArrayList<Muestra>();
+		listaM.add(m1);
+		listaM.add(m2);
+		listaM.add(m3);
+		listaM.add(m4);
 		
-		assertEquals(OperacionesUbicacion.muestrasAMenosDe(lista, 5).size(),0);
+		assertEquals(OperacionesUbicacion.muestrasAMenosDe(listaM, 5000).size(),0);
 	}
 
-	void initUbicaciones() {
-		u1 = Mockito.mock(Ubicacion.class);
-		u2 = Mockito.mock(Ubicacion.class);
-		u3 = Mockito.mock(Ubicacion.class);
-		u4 = Mockito.mock(Ubicacion.class);
-		Mockito.when(u1.latitud()).thenReturn(1500.0);
-		Mockito.when(u1.longitud()).thenReturn(2000.0);
-		Mockito.when(u2.latitud()).thenReturn(70.0);
-		Mockito.when(u2.longitud()).thenReturn(25.0);
 
-	}
-	
-	void InitMuestras() {
-		m1 = Mockito.mock(Muestra.class);
-		m2 = Mockito.mock(Muestra.class);
-		m3 = Mockito.mock(Muestra.class);
-		m4 = Mockito.mock(Muestra.class);
-		Mockito.when(m1.getUbicacion()).thenReturn(u1);
-		Mockito.when(m2.getUbicacion()).thenReturn(u2);
-		Mockito.when(m3.getUbicacion()).thenReturn(u3);
-		Mockito.when(m4.getUbicacion()).thenReturn(u4);
-	}
 	
 }

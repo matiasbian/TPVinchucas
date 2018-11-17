@@ -10,6 +10,7 @@ import Vinchucas.Bajo;
 import Vinchucas.Medio;
 import Vinchucas.Muestra;
 import Vinchucas.Muestra.Vinchuca;
+import Vinchucas.NivelVerificacion;
 import Vinchucas.Ubicacion;
 import Vinchucas.Verificacion;
 import Vinchucas.Participante;
@@ -19,7 +20,9 @@ class TestMuestras {
 	Muestra muestra1;
 	Ubicacion ubicacion1;
 	Participante usuario ;
-	Verificacion v;
+	Verificacion v,v2,v3;
+	NivelVerificacion nv;
+	
 	@Before
 	void Init() {
 		usuario = mock(Participante.class);
@@ -60,21 +63,49 @@ class TestMuestras {
 	
 	@Test
 	void testNivelVerificacionBajo() {
+		v = Mockito.mock(Verificacion.class);
+		v2 = Mockito.mock(Verificacion.class);
+		v3 = Mockito.mock(Verificacion.class);
+		Mockito.when(v.nivelVerif()).thenReturn(1);
+		Mockito.when(v2.nivelVerif()).thenReturn(0);
+		Mockito.when(v3.nivelVerif()).thenReturn(0);
+		
 		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
+		muestra1.addVerificaciones(v);
+		muestra1.addVerificaciones(v2);
+		muestra1.addVerificaciones(v3);
 		assertEquals(Bajo.class, muestra1.getNivelVerificacion().getClass());
 	}
 	
 	@Test
 	void testNivelVerificacionMedio() {
+		v = Mockito.mock(Verificacion.class);
+		v2 = Mockito.mock(Verificacion.class);
+		v3 = Mockito.mock(Verificacion.class);
+		Mockito.when(v.nivelVerif()).thenReturn(1);
+		Mockito.when(v2.nivelVerif()).thenReturn(1);
+		Mockito.when(v3.nivelVerif()).thenReturn(0);
+		
 		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
-		muestra1.setNivelVerificacion(new Medio());
+		muestra1.addVerificaciones(v);
+		muestra1.addVerificaciones(v2);
+		muestra1.addVerificaciones(v3);
 		assertEquals(Medio.class, muestra1.getNivelVerificacion().getClass());
 	}
 	
 	@Test
 	void testNivelVerificacionAlto() {
+		v = Mockito.mock(Verificacion.class);
+		v2 = Mockito.mock(Verificacion.class);
+		v3 = Mockito.mock(Verificacion.class);
+		Mockito.when(v.nivelVerif()).thenReturn(1);
+		Mockito.when(v2.nivelVerif()).thenReturn(1);
+		Mockito.when(v3.nivelVerif()).thenReturn(3);
+		
 		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
-		muestra1.setNivelVerificacion(new Alto());
+		muestra1.addVerificaciones(v);
+		muestra1.addVerificaciones(v2);
+		muestra1.addVerificaciones(v3);
 		assertEquals(Alto.class, muestra1.getNivelVerificacion().getClass());
 	}
 	

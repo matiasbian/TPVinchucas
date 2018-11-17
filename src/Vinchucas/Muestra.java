@@ -40,8 +40,8 @@ public class Muestra {
 	}
 
 	public NivelVerificacion getNivelVerificacion() {
-		nivelVerificacion.calcular(this);
-		return nivelVerificacion;
+		
+		return nivelVerificacion.calcular(this);
 	}
 
 	public ArrayList<Verificacion> verificaciones() {

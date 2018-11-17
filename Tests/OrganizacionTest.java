@@ -30,7 +30,7 @@ public class OrganizacionTest {
     @Test
     public void SetYGetTipoDeOrganizacion(){
 
-
+    	
         organizacion.setTipo(Organizacion.TipoOrganizacion.Salud);
         assertEquals(organizacion.tipoDeOrganizacion(), Organizacion.TipoOrganizacion.Salud);
 

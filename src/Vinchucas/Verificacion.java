@@ -1,5 +1,7 @@
 package Vinchucas;
 
+import java.util.Collections;
+
 public class Verificacion {
 
 	Participante participante;
@@ -36,7 +38,8 @@ public class Verificacion {
 		return this.vinchucaDetectada;
 	}
 	public int nivelVerif() {
-		return (m.tipoVinchucaFotog() == vinchucaDetectada) ? participante.calidadValoracion() : 0;
+		int apareciones = Collections.frequency(m.verificaciones(), vinchucaDetectada);
+		return (m.tipoVinchucaFotog() == vinchucaDetectada || apareciones > 1) ? participante.calidadValoracion() : 0; // si aparece mas de una vez en la lista, significa que otro opino igual que el, entonces deberia pasar a nivelMedio de verificacion
 	}
 
 }
