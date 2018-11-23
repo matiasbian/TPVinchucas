@@ -1,6 +1,7 @@
 package Vinchucas;
 
 import java.util.Collections;
+import java.util.Date;
 
 public class Verificacion {
 
@@ -42,6 +43,10 @@ public class Verificacion {
 	public int nivelVerif() {
 		int apareciones = Collections.frequency(m.verificaciones(), vinchucaDetectada);
 		return (m.tipoVinchucaFotog() == vinchucaDetectada || apareciones > 1) ? participante.calidadValoracion() : 0; // si aparece mas de una vez en la lista, significa que otro opino igual que el, entonces deberia pasar a nivelMedio de verificacion
+	}
+
+	public Date getDate() {
+		return fecha;
 	}
 
 	

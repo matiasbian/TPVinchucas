@@ -7,4 +7,12 @@ public class ParticipanteBasico extends NivelParticipante {
 		return 1;
 	}
 
+	@Override
+	public void recalculoMiNivel() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
 }

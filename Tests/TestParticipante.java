@@ -26,7 +26,7 @@ class TestParticipante {
 		p = new Participante("Joako221",n1);
 		assertEquals(p.nickName(),"Joako221");
 	}
-}
+
 	@Test
 	void testNivelBasico() {
 		n1 = new ParticipanteBasico();
@@ -78,49 +78,31 @@ class TestParticipante {
 	@Test
 	void verificoName(){
 		p = new Participante("Joako221",n1);
-		assertEquals("NoName", p.nickName());
+		assertEquals("Joako221", p.nickName());
 	}
 	
 	@Test
 	void verificoNConocimiento (){
-		p = new Participante("NoName", n1);
-		assertEquals(n1, p.nConocimiento());
+		p = new Participante("NoName", new ParticipanteBasico());
+		assertEquals(new ParticipanteBasico().getClass(), p.nConocimiento().getClass());
 	}
 	
-	@Test
-	void verificoDocumentacion(){
-		p = new Participante("NoName", n1);
-		assertEquals("sinPresentar", p.documentacion());
-		p.presentarDoc("docQuilmes", n2);
-		assertEquals("docQuilmes", p.documentacion());
-		assertEquals(n2, p.nConocimiento());
-	}
-	
-	@Test
-	void verificoEvolucion2Participantes(){
-		p = new Participante("NoName", n1);
-		p2 = new Participante("YesName", n1 );
-		p.presentarDoc("docQuilmes", n2);
-		p2.presentarDoc("", n2); //no lo va a cambiar de nivel
-		assertEquals(n2,p.nConocimiento());
-		assertEquals(n1,p2.nConocimiento());
-		assertEquals("docQuilmes", p.documentacion());
-		assertEquals("", p2.documentacion());
-	}
 
-	@test
+	
+
+	@Test
 	void evolucionPorVerificaciones() {
-		p = new Participante("Joako221",n1);
+		p = new Participante("Joako221",new ParticipanteBasico());
 		v1 = Mockito.mock(Verificacion.class);
 		v2 = Mockito.mock(Verificacion.class);
 		v3 = Mockito.mock(Verificacion.class);
-		v4 = Mockito.mock(Verificacion.class);
-		v5 = Mockito.mock(Verificacion.class);
-		v6 = Mockito.mock(Verificacion.class);
-		v7 = Mockito.mock(Verificacion.class);
-		v8 = Mockito.mock(Verificacion.class);
-		v9 = Mockito.mock(Verificacion.class);
-		v10 = Mockito.mock(Verificacion.class);
+		Verificacion v4 = Mockito.mock(Verificacion.class);
+		Verificacion v5 = Mockito.mock(Verificacion.class);
+		Verificacion v6 = Mockito.mock(Verificacion.class);
+		Verificacion v7 = Mockito.mock(Verificacion.class);
+		Verificacion v8 = Mockito.mock(Verificacion.class);
+		Verificacion v9 = Mockito.mock(Verificacion.class);
+		Verificacion v10 = Mockito.mock(Verificacion.class);
 		
 		p.addVerificacion(v1);
 		p.addVerificacion(v2);
@@ -133,6 +115,6 @@ class TestParticipante {
 		p.addVerificacion(v9);
 		p.addVerificacion(v10);
 		
-		assertEquals(p.fechasV(p.getVerificaciones().size(), 10)
+		assertEquals(p.nConocimiento().getClass(), 10);
 	}
 }

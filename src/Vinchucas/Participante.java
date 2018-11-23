@@ -1,5 +1,6 @@
 package Vinchucas;
 
+import java.util.Date;
 import java.util.ArrayList;
 
 public class Participante{
@@ -9,7 +10,6 @@ public class Participante{
 	ArrayList<Muestra> muestras;
 	ArrayList<Verificacion> verificaciones;
 	private NivelParticipante nivelParticipante;
-	String documentacion;
 
 	
 	public Participante(String nick, NivelParticipante knowledge){
@@ -17,7 +17,6 @@ public class Participante{
 		this.nivelParticipante = knowledge;
 		muestras = new ArrayList<Muestra>();
 		verificaciones = new ArrayList<Verificacion>();
-		this.documentacion = "sinPresentar";
 	}
 	
 	public String nickName(){
@@ -25,6 +24,7 @@ public class Participante{
 	}
 	
 	public NivelParticipante nConocimiento(){
+		nivelParticipante.recalculoMiNivel();
 		return nivelParticipante;
 	}
 	
@@ -32,10 +32,7 @@ public class Participante{
 		return muestras;
 	}
 	
-	public String documentacion() {
-		return documentacion;
-	}
-	
+
 	public ArrayList<Verificacion> verificaciones(){
 		return verificaciones;
 	}
@@ -44,12 +41,6 @@ public class Participante{
 		return nivelParticipante.valorar();
 	}
 	
-	public void presentarDoc(String doc,nivelParticipante knowledge) {
-		documentacion = doc;
-		if(documentacion /= "sinPresentar" && documentacion /= "") {
-			nivelParticipante = knowledge;
-		}
-	}
 	
 	public void addMuestra(Muestra m) {
 		muestras.add(m);
@@ -69,8 +60,8 @@ public class Participante{
 	}
 	
 	public int vMensuales() {
-		private int total;
-		date = new Date();
+		int total=0;
+		Date date = new Date();
 		for (Verificacion v : verificaciones()) {
 			if(date.getTime() - v.getDate().getTime() >=30) {
 				total ++;
