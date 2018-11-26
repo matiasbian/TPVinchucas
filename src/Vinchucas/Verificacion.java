@@ -15,6 +15,8 @@ public class Verificacion {
 		this.m = m;
 		this.vinchucaDetectada = tv;
 		fecha = new Date();
+		OperacionesUbicacion.notificarOrganizacionDeVerificacion(m);
+		BaseDeDatos.addVerificacion(this);
 	}
 
 	public void setParticipante(Participante p) {
@@ -42,7 +44,7 @@ public class Verificacion {
 	}
 	public int nivelVerif() {
 		int apareciones = Collections.frequency(m.verificaciones(), vinchucaDetectada);
-		return (m.tipoVinchucaFotog() == vinchucaDetectada || apareciones > 1) ? participante.calidadValoracion() : 0; // si aparece mas de una vez en la lista, significa que otro opino igual que el, entonces deberia pasar a nivelMedio de verificacion
+		return (m.tipoVinchucaFotog() == this.getVinchucaDetectada() || apareciones > 1) ? participante.calidadValoracion() : 0; // si aparece mas de una vez en la lista, significa que otro opino igual que el, entonces deberia pasar a nivelMedio de verificacion
 	}
 
 	public Date getDate() {

@@ -1,11 +1,14 @@
 package Vinchucas;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class OperacionesUbicacion {
 
 public static double distanciaEntreDosUbicaciones(Ubicacion ubi1, Ubicacion ubi2) {  
-        double radioTierra = 6371; //en kilómetros
+        double radioTierra = 6371; //en kilï¿½metros
         double dLat = Math.toRadians(ubi2.latitud() - ubi1.latitud());
         double dLng = Math.toRadians(ubi2.longitud() - ubi1.longitud());  
         double sindLat = Math.sin(dLat / 2);
@@ -35,6 +38,14 @@ public static ArrayList<Muestra> muestrasAMenosDe(ArrayList<Muestra> muestras,fl
 	}
 	borroDuplicados(muestrass);
 	return muestrass;
+}
+
+public static ArrayList<ZonaDeCobertura> zonasSolapantes (ZonaDeCobertura zc1,ArrayList<ZonaDeCobertura> zonas) {
+	
+	Stream <ZonaDeCobertura> zonasSolapantes = 	zonas.stream().filter(z -> distanciaEntreDosUbicaciones(zc1.epicentro,z.epicentro) < zc1.getRadio() + z.getRadio() && z!= zc1 );
+	
+	
+	return (ArrayList<ZonaDeCobertura>) zonasSolapantes.collect(Collectors.toList());
 }
 	
 
@@ -82,6 +93,28 @@ private static void borroDuplicadosU(ArrayList<Ubicacion> l) {
 			}
 		}
 	}
+}
+
+public static void notificarOrganizacionDeVerificacion(Muestra m) {
+	for (ZonaDeCobertura z : BaseDeDatos.getZonas()) {
+		if (estaEnLaZona(m.ubicacion(),z)) {
+			z.notificarVerificacion();
+		}
+	}
+	
+}
+
+public static void notificarOrganizacionDeMuestra(Muestra m) {
+	for (ZonaDeCobertura z : BaseDeDatos.getZonas()) {
+		if (estaEnLaZona(m.ubicacion(),z)) {
+			z.notificarMuestra();
+		}
+	}
+	
+}
+
+private static Boolean estaEnLaZona(Ubicacion u, ZonaDeCobertura z) {
+	return distanciaEntreDosUbicaciones(u, z.epicentro) < z.radio;
 }
 
 

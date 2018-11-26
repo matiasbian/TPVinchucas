@@ -1,6 +1,7 @@
 package Vinchucas;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Muestra {
 	public enum Vinchuca
@@ -14,6 +15,7 @@ public class Muestra {
 	Ubicacion ubi;
 	private NivelVerificacion nivelVerificacion;
 	private ArrayList<Verificacion> verificaciones = new ArrayList<Verificacion>();
+	Date fechaCreacion;
 	
 	public Muestra (Vinchuca vin, String fotoVin, Ubicacion ubi,Participante usuario) {
 		this.tipoVinchuca = vin;
@@ -21,6 +23,8 @@ public class Muestra {
 		this.user = usuario;
 		this.ubi = ubi;
 		this.nivelVerificacion = new Bajo();
+		OperacionesUbicacion.notificarOrganizacionDeMuestra(this);
+		BaseDeDatos.addMuestra(this);
 	}
 	
 	public Vinchuca tipoVinchucaFotog() {
@@ -63,4 +67,9 @@ public class Muestra {
 	public Ubicacion getUbicacion() {
 		return this.ubi;
 	}
+
+	public Date getFechaDeCreacion() {
+		return fechaCreacion;
+	}
+	
 }

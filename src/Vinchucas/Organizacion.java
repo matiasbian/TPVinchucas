@@ -43,4 +43,14 @@ public void setTipo(TipoOrganizacion tipo) {
 	
 }
 
+public void updateMuestra() { //Completar
+	// TODO Auto-generated method stub
+	
+}
+
+public void updateVerificacion() { //Completar
+	// TODO Auto-generated method stub
+	
+}
+
 }
