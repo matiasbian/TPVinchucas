@@ -1,10 +1,13 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Date;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import Vinchucas.Muestra;
+import Vinchucas.Muestra.Vinchuca;
 import Vinchucas.Participante;
 import Vinchucas.Verificacion;
 
@@ -26,13 +29,32 @@ class TestVerificacion {
 	
 	@Test 
 	void getParticipante(){
-		assertEquals(v.getParticipante(),p);
+		Participante p2 = p;
+		v.setParticipante(p2);
+		assertEquals(v.getParticipante(),p2);
+	}
+	
+	@Test
+	void setGetMuestra() {
+		Muestra m2 = Mockito.mock(Muestra.class);
+		v.setMuestra(m2);
+		assertEquals(v.getMuestra(), m2);
+	}
+	
+	@Test
+	void setGetVinchucaDetectada() {
+		v.setVinchucaDetectada(Vinchuca.ImagenPocoClara);
+		assertEquals(v.getVinchucaDetectada(),Vinchuca.ImagenPocoClara);
+	}
+	
+	@Test
+	void getDate() {
+		Date d = new Date();
+		assertEquals(v.getDate().getClass(),d.getClass());
 	}
 	
 	@Test
 	void testNivelVerificacion() {
-		
-		
 		assertEquals(v.nivelVerif(),1);
 	}
 	

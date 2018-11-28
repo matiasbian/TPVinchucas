@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -16,6 +17,8 @@ import Vinchucas.Verificacion;
 import Vinchucas.Participante;
 import static org.mockito.Mockito.*;
 
+import java.util.Date;
+
 class TestMuestras {
 	Muestra muestra1;
 	Ubicacion ubicacion1;
@@ -23,11 +26,12 @@ class TestMuestras {
 	Verificacion v,v2,v3;
 	NivelVerificacion nv;
 	
-	@Before
+	@BeforeEach
 	void Init() {
 		usuario = mock(Participante.class);
 		ubicacion1 = new Ubicacion(120, 15);
 		v = Mockito.mock(Verificacion.class);
+		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
 	}
 	
 
@@ -37,6 +41,10 @@ class TestMuestras {
 		assertEquals(Vinchuca.Vinchuca, muestra1.tipoVinchucaFotog());
 	}
 	
+	@Test
+	void getUbicacion() {
+		assertEquals(muestra1.getUbicacion(),ubicacion1);
+	}
 	@Test
 	void testFotoVinchucaFotografiada() {
 		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
@@ -49,6 +57,20 @@ class TestMuestras {
 		when(usuario.nickName()).thenReturn("MatiBian");
 		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
 		assertEquals("MatiBian", muestra1.aliasUsuario());
+	}
+	
+	@Test
+	void getSetNivelVerif() {
+		NivelVerificacion nv = Mockito.mock(Alto.class);
+		Mockito.when(nv.calcular(muestra1)).thenReturn(new Alto());
+		muestra1.setNivelVerificacion(nv);
+		
+		assertEquals(muestra1.getNivelVerificacion().getClass(),Alto.class);
+	}
+	
+	@Test
+	void getFechaCreacion() {
+		assertEquals(muestra1.getFechaDeCreacion().getClass(),new Date().getClass());
 	}
 	
 	@Test

@@ -28,14 +28,7 @@ public class Participante{
 		return nivelParticipante;
 	}
 	
-	public ArrayList<Muestra> muestras(){
-		return muestras;
-	}
-	
 
-	public ArrayList<Verificacion> verificaciones(){
-		return verificaciones;
-	}
 	
 	public int calidadValoracion() {
 		return nivelParticipante.valorar();
@@ -62,7 +55,7 @@ public class Participante{
 	public int vMensuales() {
 		int total=0;
 		Date date = new Date();
-		for (Verificacion v : verificaciones()) {
+		for (Verificacion v : getVerificaciones()) {
 			if(date.getTime() - v.getDate().getTime() >=30) {
 				total ++;
 			}

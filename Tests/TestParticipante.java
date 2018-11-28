@@ -26,13 +26,8 @@ class TestParticipante {
 		p = new Participante("Joako221",n1);
 		assertEquals(p.nickName(),"Joako221");
 	}
-
-	@Test
-	void testNivelBasico() {
-		n1 = new ParticipanteBasico();
-		p = new Participante("Joako221",n1);
-		assertEquals(p.nConocimiento().getClass(), ParticipanteBasico.class);
-	}
+	
+	
 	
 	@Test
 	void testAddMuestras() {
@@ -60,16 +55,14 @@ class TestParticipante {
 	
 	@Test
 	void tesCalidadValoracionNovato() {
-		n1 = Mockito.mock(ParticipanteBasico.class);
-		Mockito.when(n1.valorar()).thenReturn(1);
+		n1 = new ParticipanteBasico();
 		p = new Participante("Joako221",n1);
 		assertEquals(p.calidadValoracion(),1);
 	}
 	
 	@Test
 	void tesCalidadValoracionExperto() {
-		n2 = Mockito.mock(ParticipanteExperto.class);
-		Mockito.when(n2.valorar()).thenReturn(3);
+		n2 = new ParticipanteExperto();
 		p = new Participante("Joako221",n2);
 		assertEquals(p.calidadValoracion(),3);
 	}
@@ -82,11 +75,16 @@ class TestParticipante {
 	}
 	
 	@Test
-	void verificoNConocimiento (){
+	void verificoNConocimientoDeBasico (){
 		p = new Participante("NoName", new ParticipanteBasico());
 		assertEquals(new ParticipanteBasico().getClass(), p.nConocimiento().getClass());
 	}
 	
+	@Test
+	void verificoNConocimientoDeExperto (){
+		Participante p2 = new Participante("JOSE221", new ParticipanteExperto());
+		assertEquals(new ParticipanteExperto().getClass(), p2.nConocimiento().getClass());
+	}
 
 	
 

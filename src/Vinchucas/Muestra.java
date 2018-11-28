@@ -25,6 +25,7 @@ public class Muestra {
 		this.nivelVerificacion = new Bajo();
 		OperacionesUbicacion.notificarOrganizacionDeMuestra(this);
 		BaseDeDatos.addMuestra(this);
+		this.fechaCreacion = new Date();
 	}
 	
 	public Vinchuca tipoVinchucaFotog() {
@@ -56,9 +57,6 @@ public class Muestra {
 		verificaciones.add(v) ;
 	}
 
-	public NivelVerificacion getNivelVerificacion(NivelVerificacion n) {
-		return nivelVerificacion ;
-	}
 	
 	public void setNivelVerificacion(NivelVerificacion n) {
 		nivelVerificacion = n;
