@@ -2,6 +2,7 @@ package Vinchucas;
 
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Participante{
 
@@ -10,6 +11,7 @@ public class Participante{
 	ArrayList<Muestra> muestras;
 	ArrayList<Verificacion> verificaciones;
 	private NivelParticipante nivelParticipante;
+	Boolean ExpertoDeFormaExterna;
 
 	
 	public Participante(String nick, NivelParticipante knowledge){
@@ -17,17 +19,27 @@ public class Participante{
 		this.nivelParticipante = knowledge;
 		muestras = new ArrayList<Muestra>();
 		verificaciones = new ArrayList<Verificacion>();
+		if(this.nivelParticipante.getClass() == ParticipanteExperto.class) {
+			this.ExpertoDeFormaExterna = true;
+		}
 	}
 	
 	public String nickName(){
 		return nickName;
 	}
 	
+	public boolean expertoPreviamente() {
+		return this.ExpertoDeFormaExterna;
+	}
+	
 	public NivelParticipante nConocimiento(){
-		nivelParticipante.recalculoMiNivel();
+		nivelParticipante.recalculoMiNivel(this);
 		return nivelParticipante;
 	}
 	
+	public void setNivelParticipante(NivelParticipante n) {
+		nivelParticipante = n;
+	}
 
 	
 	public int calidadValoracion() {
@@ -54,9 +66,30 @@ public class Participante{
 	
 	public int vMensuales() {
 		int total=0;
-		Date date = new Date();
+		Calendar fecha = Calendar.getInstance();
+		int mes = fecha.get(Calendar.MONTH);
+		Calendar fecha2 = Calendar.getInstance();
+		
 		for (Verificacion v : getVerificaciones()) {
-			if(date.getTime() - v.getDate().getTime() >=30) {
+			fecha2.setTime(v.getDate());
+			int mes2 = fecha2.get(Calendar.MONTH);
+			if(mes == mes2) {
+				total ++;
+			}
+		}
+		return total;
+	}
+	
+	public int muestrasMensuales() {
+		int total=0;
+		Calendar fecha = Calendar.getInstance();
+		int mes = fecha.get(Calendar.MONTH);
+		Calendar fecha2 = Calendar.getInstance();
+		
+		for (Muestra m : getMuestras()) {
+			fecha2.setTime(m.getFechaDeCreacion());
+			int mes2 = fecha2.get(Calendar.MONTH);
+			if(mes == mes2) {
 				total ++;
 			}
 		}

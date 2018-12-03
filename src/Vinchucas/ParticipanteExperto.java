@@ -7,10 +7,4 @@ public class ParticipanteExperto extends NivelParticipante {
 		return 3;
 	}
 
-	@Override
-	public void recalculoMiNivel() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

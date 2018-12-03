@@ -1,3 +1,4 @@
+import Vinchucas.FuncionalidadExterna;
 import Vinchucas.Organizacion;
 import Vinchucas.Ubicacion;
 import org.junit.Before;
@@ -12,11 +13,15 @@ public class OrganizacionTest {
     Ubicacion ubicacion;
     Organizacion organizacion;
     Ubicacion ubicacionTest;
+    FuncionalidadExterna funcMuestra;
+    FuncionalidadExterna funcVerificacion;
+    	
+    
     @Before
     public void setUp(){
-
+    	
         ubicacion = mock(Ubicacion.class);
-        organizacion = new Organizacion(ubicacion, Organizacion.TipoOrganizacion.Asistencia,10);
+        organizacion = new Organizacion(ubicacion, Organizacion.TipoOrganizacion.Asistencia,10, funcMuestra, funcVerificacion);
         ubicacionTest = mock(Ubicacion.class);
 
     }

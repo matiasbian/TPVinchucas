@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import Vinchucas.BaseDeDatos;
+import Vinchucas.FuncionalidadExterna;
+import Vinchucas.Muestra;
 import Vinchucas.OperacionesUbicacion;
 import Vinchucas.Organizacion;
 import Vinchucas.Organizacion.TipoOrganizacion;
@@ -18,11 +20,16 @@ class testZonaDeCobertura {
 	ZonaDeCobertura zc;
 	Ubicacion ubi;
 	BaseDeDatos db;
+	FuncionalidadExterna funcMuestra;
+	FuncionalidadExterna funcVerificacion;
+	Muestra m;
+	
 	@BeforeEach
 	void Init() {
 		ubi = Mockito.mock(Ubicacion.class);
 		zc = new ZonaDeCobertura("Zona Sur",ubi,50);
 		db = Mockito.mock(BaseDeDatos.class);
+		m  = Mockito.mock(Muestra.class);
 	}
 	@Test
 	void testGetSetEpicentro() {
@@ -80,29 +87,29 @@ class testZonaDeCobertura {
 	
 	@Test
 	void testNotificarMuestraAOrganizaciones() {
-		Organizacion UNICEF = Mockito.spy(new Organizacion(ubi,TipoOrganizacion.Asistencia,5000));
-		Organizacion Caritas = Mockito.spy(new Organizacion(ubi,TipoOrganizacion.Asistencia,5000));
+		Organizacion UNICEF = Mockito.spy(new Organizacion(ubi,TipoOrganizacion.Asistencia,5000, funcMuestra, funcVerificacion));
+		Organizacion Caritas = Mockito.spy(new Organizacion(ubi,TipoOrganizacion.Asistencia,5000, funcMuestra, funcVerificacion));
 		
 
 		zc.registrarse(UNICEF);
 		zc.registrarse(Caritas);
-		zc.notificarMuestra();
-		Mockito.verify(UNICEF).updateMuestra();
-		Mockito.verify(Caritas).updateMuestra();
+		zc.notificarMuestra(m);
+		Mockito.verify(UNICEF).updateMuestra(zc, m);
+		Mockito.verify(Caritas).updateMuestra(zc, m);
 		
 	}
 	
 	@Test
 	void testNotificarVerificacionAOrganizaciones() {
-		Organizacion UNICEF = Mockito.spy(new Organizacion(ubi,TipoOrganizacion.Asistencia,5000));
-		Organizacion Caritas = Mockito.spy(new Organizacion(ubi,TipoOrganizacion.Asistencia,5000));
+		Organizacion UNICEF = Mockito.spy(new Organizacion(ubi,TipoOrganizacion.Asistencia,5000, funcMuestra, funcVerificacion));
+		Organizacion Caritas = Mockito.spy(new Organizacion(ubi,TipoOrganizacion.Asistencia,5000, funcMuestra, funcVerificacion));
 		
 
 		zc.registrarse(UNICEF);
 		zc.registrarse(Caritas);
-		zc.notificarVerificacion();
-		Mockito.verify(UNICEF).updateVerificacion();
-		Mockito.verify(Caritas).updateVerificacion();
+		zc.notificarVerificacion(m);
+		Mockito.verify(UNICEF).updateVerificacion(zc, m);
+		Mockito.verify(Caritas).updateVerificacion(zc, m);
 		
 	}
 

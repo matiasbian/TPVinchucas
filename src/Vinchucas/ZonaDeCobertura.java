@@ -45,15 +45,15 @@ public class ZonaDeCobertura {
 	public List<ZonaDeCobertura> Solapantes(ArrayList<ZonaDeCobertura> zonas) {
 		return OperacionesUbicacion.zonasSolapantes(this,zonas);
 	}
-	public void notificarMuestra() {
+	public void notificarMuestra(Muestra m) {
 		for (Organizacion o : organizaciones) {
-			o.updateMuestra();
+			o.updateMuestra(this, m);
 		}
 	}
 	
-	public void notificarVerificacion() {
+	public void notificarVerificacion(Muestra m) {
 		for (Organizacion o : organizaciones) {
-			o.updateVerificacion();
+			o.updateVerificacion(this, m);
 		}
 	}
 }

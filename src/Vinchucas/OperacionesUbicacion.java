@@ -98,7 +98,7 @@ private static void borroDuplicadosU(ArrayList<Ubicacion> l) {
 public static void notificarOrganizacionDeVerificacion(Muestra m) {
 	for (ZonaDeCobertura z : BaseDeDatos.getZonas()) {
 		if (estaEnLaZona(m.ubicacion(),z)) {
-			z.notificarVerificacion();
+			z.notificarVerificacion(m);
 		}
 	}
 	
@@ -107,7 +107,7 @@ public static void notificarOrganizacionDeVerificacion(Muestra m) {
 public static void notificarOrganizacionDeMuestra(Muestra m) {
 	for (ZonaDeCobertura z : BaseDeDatos.getZonas()) {
 		if (estaEnLaZona(m.ubicacion(),z)) {
-			z.notificarMuestra();
+			z.notificarMuestra(m);
 		}
 	}
 	
