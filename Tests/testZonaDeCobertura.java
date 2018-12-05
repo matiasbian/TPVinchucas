@@ -87,8 +87,8 @@ class testZonaDeCobertura {
 	
 	@Test
 	void testNotificarMuestraAOrganizaciones() {
-		Organizacion UNICEF = Mockito.spy(new Organizacion(ubi,TipoOrganizacion.Asistencia,5000, funcMuestra, funcVerificacion));
-		Organizacion Caritas = Mockito.spy(new Organizacion(ubi,TipoOrganizacion.Asistencia,5000, funcMuestra, funcVerificacion));
+		Organizacion UNICEF = Mockito.mock(Organizacion.class);
+		Organizacion Caritas = Mockito.mock(Organizacion.class);
 		
 
 		zc.registrarse(UNICEF);
@@ -101,8 +101,8 @@ class testZonaDeCobertura {
 	
 	@Test
 	void testNotificarVerificacionAOrganizaciones() {
-		Organizacion UNICEF = Mockito.spy(new Organizacion(ubi,TipoOrganizacion.Asistencia,5000, funcMuestra, funcVerificacion));
-		Organizacion Caritas = Mockito.spy(new Organizacion(ubi,TipoOrganizacion.Asistencia,5000, funcMuestra, funcVerificacion));
+		Organizacion UNICEF = Mockito.mock(Organizacion.class);
+		Organizacion Caritas = Mockito.mock(Organizacion.class);
 		
 
 		zc.registrarse(UNICEF);

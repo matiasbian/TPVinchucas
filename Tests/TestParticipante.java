@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -16,9 +17,9 @@ class TestParticipante {
 	Participante p;
 	Muestra m1,m2,m3;
 	Verificacion v1,v2,v3;
-	@Before
+	@BeforeEach
 	void Init() {
-		
+		n1 = new ParticipanteBasico();
 		
 	}
 	@Test
@@ -77,7 +78,7 @@ class TestParticipante {
 	@Test
 	void verificoNConocimientoDeBasico (){
 		p = new Participante("NoName", new ParticipanteBasico());
-		assertEquals(new ParticipanteBasico().getClass(), p.nConocimiento().getClass());
+		assertEquals(ParticipanteBasico.class, p.nConocimiento().getClass());
 	}
 	
 	@Test
@@ -88,31 +89,5 @@ class TestParticipante {
 
 	
 
-	@Test
-	void evolucionPorVerificaciones() {
-		p = new Participante("Joako221",new ParticipanteBasico());
-		v1 = Mockito.mock(Verificacion.class);
-		v2 = Mockito.mock(Verificacion.class);
-		v3 = Mockito.mock(Verificacion.class);
-		Verificacion v4 = Mockito.mock(Verificacion.class);
-		Verificacion v5 = Mockito.mock(Verificacion.class);
-		Verificacion v6 = Mockito.mock(Verificacion.class);
-		Verificacion v7 = Mockito.mock(Verificacion.class);
-		Verificacion v8 = Mockito.mock(Verificacion.class);
-		Verificacion v9 = Mockito.mock(Verificacion.class);
-		Verificacion v10 = Mockito.mock(Verificacion.class);
-		
-		p.addVerificacion(v1);
-		p.addVerificacion(v2);
-		p.addVerificacion(v3);
-		p.addVerificacion(v4);
-		p.addVerificacion(v5);
-		p.addVerificacion(v6);
-		p.addVerificacion(v7);
-		p.addVerificacion(v8);
-		p.addVerificacion(v9);
-		p.addVerificacion(v10);
-		
-		assertEquals(p.nConocimiento().getClass(), 10);
-	}
+
 }
