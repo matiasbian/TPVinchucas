@@ -113,9 +113,10 @@ public static void notificarOrganizacionDeMuestra(Muestra m) {
 	
 }
 
-private static Boolean estaEnLaZona(Ubicacion u, ZonaDeCobertura z) {
+public static Boolean estaEnLaZona(Ubicacion u, ZonaDeCobertura z) {
 	return distanciaEntreDosUbicaciones(u, z.epicentro) < z.radio;
 }
+
 
 
 }

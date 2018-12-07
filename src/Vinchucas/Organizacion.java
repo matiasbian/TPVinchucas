@@ -17,7 +17,7 @@ public Organizacion(Ubicacion ubicacion, TipoOrganizacion tipo, int cantidad, Fu
 	this.tipo = tipo;
     this.cantEmpleados = cantidad;
     this.funcMuestra = funcMuestra;
-    this.funcVerificacion = funcVerificacion;
+    this.funcVerificacion = funcVerificaciones;
 }
 
 public Ubicacion ubicacion() {

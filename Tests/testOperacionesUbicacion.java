@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.mockito.internal.verification.AtLeast;
 
+import Vinchucas.BaseDeDatos;
 import Vinchucas.Muestra;
 import Vinchucas.OperacionesUbicacion;
 import Vinchucas.Ubicacion;
+import Vinchucas.ZonaDeCobertura;
 
 class testOperacionesUbicacion {
 	Ubicacion u1,u2,u3,u4;
@@ -51,7 +54,7 @@ class testOperacionesUbicacion {
 		Mockito.when(u1.longitud()).thenReturn(200.0);
 		Mockito.when(u2.latitud()).thenReturn(150.0);
 		Mockito.when(u2.longitud()).thenReturn(200.0);
-		assertEquals(new OperacionesUbicacion().distanciaEntreDosUbicaciones(u1, u2),0);
+		assertEquals(OperacionesUbicacion.distanciaEntreDosUbicaciones(u1, u2),0);
 	}
 	
 	@Test
@@ -97,6 +100,16 @@ class testOperacionesUbicacion {
 		
 		assertEquals(OperacionesUbicacion.muestrasAMenosDe(listaM, 5000).size(),0);
 	}
+	
+	@Test 
+	void testEstaEnLaZona() {
+		Ubicacion u = new Ubicacion(100,100);
+		Ubicacion u2 = new Ubicacion(99.5,100);
+		ZonaDeCobertura z = new ZonaDeCobertura("Varela",u2,1000.5f);
+
+		assertEquals(OperacionesUbicacion.estaEnLaZona(u, z),true);
+	}
+	
 
 
 	

@@ -17,7 +17,7 @@ public class Muestra {
 	Ubicacion ubi;
 	private NivelVerificacion nivelVerificacion;
 	private ArrayList<Verificacion> verificaciones = new ArrayList<Verificacion>();
-	Calendar fechaCreacion;
+	Date fechaCreacion;
 	
 	public Muestra (Vinchuca vin, String fotoVin, Ubicacion ubi,Participante usuario) {
 		this.tipoVinchuca = vin;
@@ -27,7 +27,7 @@ public class Muestra {
 		this.nivelVerificacion = new Bajo();
 		OperacionesUbicacion.notificarOrganizacionDeMuestra(this);
 		BaseDeDatos.addMuestra(this);
-		this.fechaCreacion = Calendar.getInstance();
+		this.fechaCreacion = new Date();
 	}
 	
 	public Vinchuca tipoVinchucaFotog() {
@@ -68,7 +68,7 @@ public class Muestra {
 		return this.ubi;
 	}
 
-	public Calendar getFechaDeCreacion() {
+	public Date getFechaDeCreacion() {
 		return fechaCreacion;
 	}
 	
