@@ -8,9 +8,7 @@ import Vinchucas.Ubicacion;
 class testUbicacion {
 	Ubicacion u1;
 	@Before
-	void SetUp() {
-		
-	}
+
 	@Test
 	void testGetLatitud() {
 		u1 = new Ubicacion(150,200);

@@ -1,5 +1,8 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -87,7 +90,33 @@ class TestParticipante {
 		assertEquals(new ParticipanteExperto().getClass(), p2.nConocimiento().getClass());
 	}
 
+	@Test
+	void verificoMuestrasMensualesNuevoParticipante() {
+		Participante p3 = new Participante("pruebaUser", new ParticipanteBasico());
+		assertEquals(p3.muestrasMensuales(), 0);
+	}
+
+	@Test
+	void verificoMismoDiaFechaCreacion() {
+		Participante p4 = new Participante("otroUser", n1);
+		m1 = Mockito.mock(Muestra.class);
+		m2 = Mockito.mock(Muestra.class);
 	
-
-
+		p4.addMuestra(m1);
+		p4.addMuestra(m2);
+		
+		assertEquals(m1.getFechaDeCreacion(), m2.getFechaDeCreacion());
+	}
+	
+	@Test
+	void verificoMuestrasMensuales() {
+		Participante p4 = new Participante("otroUser", new ParticipanteBasico());
+		m1 = Mockito.mock(Muestra.class);
+		m2 = Mockito.mock(Muestra.class);
+	
+		p4.addMuestra(m1);
+		p4.addMuestra(m2);
+		
+		assertEquals(p4.muestrasMensuales(), 2);
+	}
 }

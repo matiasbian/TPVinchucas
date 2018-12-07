@@ -1,7 +1,7 @@
 package Vinchucas;
 
-public interface FuncionalidadExterna{
+public interface Interf{
 	
-	public NuevoEvento(Organizaciones org, ZonaDeCobertura zonaCob, Muestra muestra);
+	public void NuevoEvento(Organizacion org, ZonaDeCobertura zonaCob, Muestra muestra);
 	
 }

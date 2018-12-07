@@ -1,6 +1,8 @@
 package Vinchucas;
 
 import java.util.ArrayList;
+
+import java.util.Calendar;
 import java.util.Date;
 
 public class Muestra {
@@ -15,7 +17,7 @@ public class Muestra {
 	Ubicacion ubi;
 	private NivelVerificacion nivelVerificacion;
 	private ArrayList<Verificacion> verificaciones = new ArrayList<Verificacion>();
-	Date fechaCreacion;
+	Calendar fechaCreacion;
 	
 	public Muestra (Vinchuca vin, String fotoVin, Ubicacion ubi,Participante usuario) {
 		this.tipoVinchuca = vin;
@@ -25,7 +27,7 @@ public class Muestra {
 		this.nivelVerificacion = new Bajo();
 		OperacionesUbicacion.notificarOrganizacionDeMuestra(this);
 		BaseDeDatos.addMuestra(this);
-		this.fechaCreacion = new Date();
+		this.fechaCreacion = Calendar.getInstance();
 	}
 	
 	public Vinchuca tipoVinchucaFotog() {
@@ -66,7 +68,7 @@ public class Muestra {
 		return this.ubi;
 	}
 
-	public Date getFechaDeCreacion() {
+	public Calendar getFechaDeCreacion() {
 		return fechaCreacion;
 	}
 	

@@ -11,7 +11,7 @@ public class Participante{
 	ArrayList<Muestra> muestras;
 	ArrayList<Verificacion> verificaciones;
 	private NivelParticipante nivelParticipante;
-	boolean ExpertoDeFormaExterna = false;
+	boolean ExpertoDeFormaExterna;
 
 	
 	public Participante(String nick, NivelParticipante knowledge){
@@ -19,7 +19,7 @@ public class Participante{
 		this.nivelParticipante = knowledge;
 		muestras = new ArrayList<Muestra>();
 		verificaciones = new ArrayList<Verificacion>();
-		if(knowledge.getClass() == ParticipanteExperto.class) {
+		if(this.nivelParticipante.getClass() == ParticipanteExperto.class) {
 			this.ExpertoDeFormaExterna = true;
 		}
 	}
