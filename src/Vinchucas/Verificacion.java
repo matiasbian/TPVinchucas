@@ -15,8 +15,8 @@ public class Verificacion {
 		this.m = m;
 		this.vinchucaDetectada = tv;
 		fecha = new Date();
-		OperacionesUbicacion.notificarOrganizacionDeVerificacion(m);
-		BaseDeDatos.addVerificacion(this);
+		PortalWeb.notificarOrganizacionDeVerificacion(m);
+		PortalWeb.addVerificacion(this);
 	}
 
 	public void setParticipante(Participante p) {

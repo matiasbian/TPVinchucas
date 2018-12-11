@@ -2,6 +2,8 @@ package Vinchucas;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ZonaDeCobertura {
 	String nombre;
@@ -43,7 +45,8 @@ public class ZonaDeCobertura {
 	}
 	
 	public List<ZonaDeCobertura> Solapantes(ArrayList<ZonaDeCobertura> zonas) {
-		return OperacionesUbicacion.zonasSolapantes(this,zonas);
+		Stream <ZonaDeCobertura> zonasSolapantes = 	zonas.stream().filter(z -> this.epicentro.distanciaEntreDosUbicaciones(z.epicentro) < z.getRadio() + this.getRadio() && z!= this );
+		return (ArrayList<ZonaDeCobertura>) zonasSolapantes.collect(Collectors.toList());
 	}
 	public void notificarMuestra(Muestra m) {
 		for (Organizacion o : organizaciones) {
@@ -56,4 +59,5 @@ public class ZonaDeCobertura {
 			o.updateVerificacion(this, m);
 		}
 	}
+	
 }

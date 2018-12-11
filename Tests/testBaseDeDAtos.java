@@ -8,13 +8,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import Vinchucas.BaseDeDatos;
+import Vinchucas.PortalWeb;
 import Vinchucas.FiltroDeBusqueda;
 import Vinchucas.Muestra;
 import Vinchucas.Verificacion;
 import Vinchucas.ZonaDeCobertura;
 
-class testBaseDeDAtos {
+class testPortalWeb {
 	Muestra m1,m2,m3;
 	Verificacion v1,v2,v3;
 	ZonaDeCobertura z1,z2,z3;
@@ -34,52 +34,52 @@ class testBaseDeDAtos {
 	}
 	@Test
 	void addRemoveGetMuestra() {
-		BaseDeDatos.ResetMuestras();
-		BaseDeDatos.addMuestra(m1);
-		BaseDeDatos.addMuestra(m3);
-		BaseDeDatos.addMuestra(m2);
+		PortalWeb.ResetMuestras();
+		PortalWeb.addMuestra(m1);
+		PortalWeb.addMuestra(m3);
+		PortalWeb.addMuestra(m2);
 		
-		BaseDeDatos.removeMuestra(m2);
-		assertEquals(BaseDeDatos.getMuestras().size(),2);
+		PortalWeb.removeMuestra(m2);
+		assertEquals(PortalWeb.getMuestras().size(),2);
 		
 	}
 	@Test
 	void addRemoveGetVerificacion() {
-		BaseDeDatos.ResetVerificaciones();
-		BaseDeDatos.addVerificacion(v1);
-		BaseDeDatos.addVerificacion(v2);
-		BaseDeDatos.addVerificacion(v3);
+		PortalWeb.ResetVerificaciones();
+		PortalWeb.addVerificacion(v1);
+		PortalWeb.addVerificacion(v2);
+		PortalWeb.addVerificacion(v3);
 		
-		BaseDeDatos.removeVerificacion(v1);
-		assertEquals(BaseDeDatos.getVerificaciones().size(),2);
+		PortalWeb.removeVerificacion(v1);
+		assertEquals(PortalWeb.getVerificaciones().size(),2);
 	}
 	@Test
 	void addRemoveGetZona() {
-		BaseDeDatos.ResetZonas();
-		BaseDeDatos.addZona(z1);
-		BaseDeDatos.addZona(z2);
-		BaseDeDatos.addZona(z3);
+		PortalWeb.ResetZonas();
+		PortalWeb.addZona(z1);
+		PortalWeb.addZona(z2);
+		PortalWeb.addZona(z3);
 		
-		BaseDeDatos.removeZona(z3);
-		BaseDeDatos.removeZona(z1);
+		PortalWeb.removeZona(z3);
+		PortalWeb.removeZona(z1);
 		
-		assertEquals(BaseDeDatos.getZonas().size(),1);
+		assertEquals(PortalWeb.getZonas().size(),1);
 	}
 
 	@Test
 	void resetMuestras() {
-		BaseDeDatos.ResetMuestras();
-		assertEquals(BaseDeDatos.getMuestras().isEmpty(),true);
+		PortalWeb.ResetMuestras();
+		assertEquals(PortalWeb.getMuestras().isEmpty(),true);
 	}
 	@Test
 	void reesetVerificaciones() {
-		BaseDeDatos.ResetVerificaciones();
-		assertEquals(BaseDeDatos.getVerificaciones().isEmpty(),true);
+		PortalWeb.ResetVerificaciones();
+		assertEquals(PortalWeb.getVerificaciones().isEmpty(),true);
 	}
 	@Test
 	void resetZona() {
-		BaseDeDatos.ResetZonas();
-		assertTrue(BaseDeDatos.getZonas().isEmpty());
+		PortalWeb.ResetZonas();
+		assertTrue(PortalWeb.getZonas().isEmpty());
 	}
 
 }

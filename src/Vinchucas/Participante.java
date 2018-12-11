@@ -22,6 +22,7 @@ public class Participante{
 		if(this.nivelParticipante.getClass() == ParticipanteExperto.class) {
 			this.ExpertoDeFormaExterna = true;
 		}
+		PortalWeb.addParticipante(this);
 	}
 	
 	public String nickName(){

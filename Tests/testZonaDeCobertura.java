@@ -7,10 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import Vinchucas.BaseDeDatos;
+import Vinchucas.PortalWeb;
 import Vinchucas.FuncionalidadExterna;
 import Vinchucas.Muestra;
-import Vinchucas.OperacionesUbicacion;
 import Vinchucas.Organizacion;
 import Vinchucas.Organizacion.TipoOrganizacion;
 import Vinchucas.Ubicacion;
@@ -19,7 +18,7 @@ import Vinchucas.ZonaDeCobertura;
 class testZonaDeCobertura {
 	ZonaDeCobertura zc;
 	Ubicacion ubi;
-	BaseDeDatos db;
+	PortalWeb db;
 	FuncionalidadExterna funcMuestra;
 	FuncionalidadExterna funcVerificacion;
 	Muestra m;
@@ -28,7 +27,7 @@ class testZonaDeCobertura {
 	void Init() {
 		ubi = Mockito.mock(Ubicacion.class);
 		zc = new ZonaDeCobertura("Zona Sur",ubi,50);
-		db = Mockito.mock(BaseDeDatos.class);
+		db = Mockito.mock(PortalWeb.class);
 		m  = Mockito.mock(Muestra.class);
 	}
 	@Test
@@ -78,11 +77,11 @@ class testZonaDeCobertura {
 		Mockito.when(ubi3.longitud()).thenReturn(51.0);
 		ZonaDeCobertura zc2 = new ZonaDeCobertura("Quilmes",ubi2,90);
 		ZonaDeCobertura zc3 = new ZonaDeCobertura("Berazategui",ubi3,150);
-		BaseDeDatos.addZona(zc);
-		BaseDeDatos.addZona(zc2);
-		BaseDeDatos.addZona(zc3);
-		assertEquals(zc.Solapantes(BaseDeDatos.getZonas()).size(),2);
-		BaseDeDatos.ResetZonas();
+		PortalWeb.addZona(zc);
+		PortalWeb.addZona(zc2);
+		PortalWeb.addZona(zc3);
+		assertEquals(zc.Solapantes(PortalWeb.getZonas()).size(),2);
+		PortalWeb.ResetZonas();
 	}
 	
 	@Test

@@ -25,8 +25,8 @@ public class Muestra {
 		this.user = usuario;
 		this.ubi = ubi;
 		this.nivelVerificacion = new Bajo();
-		OperacionesUbicacion.notificarOrganizacionDeMuestra(this);
-		BaseDeDatos.addMuestra(this);
+		PortalWeb.notificarOrganizacionDeMuestra(this);
+		PortalWeb.addMuestra(this);
 		this.fechaCreacion = new Date();
 	}
 	
@@ -70,6 +70,16 @@ public class Muestra {
 
 	public Date getFechaDeCreacion() {
 		return fechaCreacion;
+	}
+	
+	public  ArrayList<Muestra> muestrasAMenosDe(ArrayList<Muestra> muestras,float distancia) {
+		ArrayList<Muestra> muestrass = new ArrayList<Muestra>();
+		for (Muestra m2 : muestras) {
+			if (this !=  m2 && this.ubi.distanciaEntreDosUbicaciones( m2.getUbicacion()) < distancia) {
+				muestrass.add(m2);
+			}
+		}
+		return muestrass;
 	}
 	
 }

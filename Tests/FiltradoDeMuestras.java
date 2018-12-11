@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 import Vinchucas.AND;
 import Vinchucas.Alto;
 import Vinchucas.Bajo;
-import Vinchucas.BaseDeDatos;
+import Vinchucas.PortalWeb;
 import Vinchucas.FechaDeCreacion;
 import Vinchucas.FechaUltimaVerificacion;
 import Vinchucas.FiltroDeBusqueda;
@@ -56,11 +56,11 @@ class FiltradoDeMuestras {
 	@Test
 	void filtroPorFechaDeCreacion() {
 		
-		BaseDeDatos.addMuestra(m1);
-		BaseDeDatos.addMuestra(m2);
-		BaseDeDatos.addMuestra(m3);
-		BaseDeDatos.addMuestra(m4);
-		BaseDeDatos.addMuestra(m5);
+		PortalWeb.addMuestra(m1);
+		PortalWeb.addMuestra(m2);
+		PortalWeb.addMuestra(m3);
+		PortalWeb.addMuestra(m4);
+		PortalWeb.addMuestra(m5);
 		
 		Mockito.when(m1.getFechaDeCreacion()).thenReturn(new Date(100));
 		Mockito.when(m2.getFechaDeCreacion()).thenReturn(new Date(1000));
@@ -70,17 +70,17 @@ class FiltradoDeMuestras {
 		
 		f1 = new FechaDeCreacion(new Date(10000));
 	
-		assertEquals(BaseDeDatos.filtrar(f1).size(), 3);
-		BaseDeDatos.ResetMuestras();
+		assertEquals(PortalWeb.filtrar(f1).size(), 3);
+		PortalWeb.ResetMuestras();
 	}
 	
 	@Test
 	void filtroPorFechaUltimaVerificacion() {
-		BaseDeDatos.addMuestra(m1);
-		BaseDeDatos.addMuestra(m2);
-		BaseDeDatos.addMuestra(m3);
-		BaseDeDatos.addMuestra(m4);
-		BaseDeDatos.addMuestra(m5);
+		PortalWeb.addMuestra(m1);
+		PortalWeb.addMuestra(m2);
+		PortalWeb.addMuestra(m3);
+		PortalWeb.addMuestra(m4);
+		PortalWeb.addMuestra(m5);
 		
 		
 		ArrayList<Verificacion> vs = new ArrayList<Verificacion>();
@@ -95,18 +95,18 @@ class FiltradoDeMuestras {
 		
 		f2 = new FechaUltimaVerificacion(new Date(10000));
 	
-		assertEquals(BaseDeDatos.filtrar(f2).size(), 1);
-		BaseDeDatos.ResetMuestras();
+		assertEquals(PortalWeb.filtrar(f2).size(), 1);
+		PortalWeb.ResetMuestras();
 	}
 	
 	@Test
 	void filtroPorTipoDeInsecto() {
 		
-		BaseDeDatos.addMuestra(m1);
-		BaseDeDatos.addMuestra(m2);
-		BaseDeDatos.addMuestra(m3);
-		BaseDeDatos.addMuestra(m4);
-		BaseDeDatos.addMuestra(m5);
+		PortalWeb.addMuestra(m1);
+		PortalWeb.addMuestra(m2);
+		PortalWeb.addMuestra(m3);
+		PortalWeb.addMuestra(m4);
+		PortalWeb.addMuestra(m5);
 
 		Mockito.when(m1.tipoVinchucaFotog()).thenReturn(Vinchuca.ChincheFoliada);
 		Mockito.when(m2.tipoVinchucaFotog()).thenReturn(Vinchuca.ImagenPocoClara);
@@ -118,18 +118,18 @@ class FiltradoDeMuestras {
 		
 		f3 = new TipoDeInsecto(Vinchuca.ChincheFoliada);
 	
-		assertEquals(BaseDeDatos.filtrar(f3).size(), 2);
-		BaseDeDatos.ResetMuestras();
+		assertEquals(PortalWeb.filtrar(f3).size(), 2);
+		PortalWeb.ResetMuestras();
 	}
 	
 	@Test
 	void filtroPorNivelDeValoracion() {
 		
-		BaseDeDatos.addMuestra(m1);
-		BaseDeDatos.addMuestra(m2);
-		BaseDeDatos.addMuestra(m3);
-		BaseDeDatos.addMuestra(m4);
-		BaseDeDatos.addMuestra(m5);
+		PortalWeb.addMuestra(m1);
+		PortalWeb.addMuestra(m2);
+		PortalWeb.addMuestra(m3);
+		PortalWeb.addMuestra(m4);
+		PortalWeb.addMuestra(m5);
 
 
 		Mockito.when(m1.getNivelVerificacion()).thenReturn(new Medio());
@@ -139,17 +139,17 @@ class FiltradoDeMuestras {
 		Mockito.when(m5.getNivelVerificacion()).thenReturn(new Medio());
 		f4 = new NivelDeValidacion(new Medio());
 	
-		assertEquals(BaseDeDatos.filtrar(f4).size(), 3);
-		BaseDeDatos.ResetMuestras();
+		assertEquals(PortalWeb.filtrar(f4).size(), 3);
+		PortalWeb.ResetMuestras();
 	}
 	
 	@Test
 	void filtroPorNivelDeValoracionANDTipoDeVinchuca() {
-		BaseDeDatos.addMuestra(m1);
-		BaseDeDatos.addMuestra(m2);
-		BaseDeDatos.addMuestra(m3);
-		BaseDeDatos.addMuestra(m4);
-		BaseDeDatos.addMuestra(m5);
+		PortalWeb.addMuestra(m1);
+		PortalWeb.addMuestra(m2);
+		PortalWeb.addMuestra(m3);
+		PortalWeb.addMuestra(m4);
+		PortalWeb.addMuestra(m5);
 		
 
 		Mockito.when(m1.getNivelVerificacion()).thenReturn(new Medio());
@@ -167,18 +167,18 @@ class FiltradoDeMuestras {
 		f3 = new TipoDeInsecto(Vinchuca.ChincheFoliada);
 		f4 = new NivelDeValidacion(new Medio());
 		ol1 = new AND(f3,f4);
-		assertEquals(BaseDeDatos.filtrar(ol1).size(), 1);
-		BaseDeDatos.ResetMuestras();
+		assertEquals(PortalWeb.filtrar(ol1).size(), 1);
+		PortalWeb.ResetMuestras();
 	}
 	
 	@Test
 	void filtroPorNivelDeValoracionANDChincheOVinchuca() {
 		
-		BaseDeDatos.addMuestra(m1);
-		BaseDeDatos.addMuestra(m2);
-		BaseDeDatos.addMuestra(m3);
-		BaseDeDatos.addMuestra(m4);
-		BaseDeDatos.addMuestra(m5);
+		PortalWeb.addMuestra(m1);
+		PortalWeb.addMuestra(m2);
+		PortalWeb.addMuestra(m3);
+		PortalWeb.addMuestra(m4);
+		PortalWeb.addMuestra(m5);
 
 		Mockito.when(m1.getNivelVerificacion()).thenReturn(new Medio());
 		Mockito.when(m2.getNivelVerificacion()).thenReturn(new Alto());
@@ -198,8 +198,8 @@ class FiltradoDeMuestras {
 		
 		ol2 = new OR(f3,f2);
 		ol1 = new AND(f4,ol2);
-		assertEquals(BaseDeDatos.filtrar(ol1).size(), 2);
-		BaseDeDatos.ResetMuestras();
+		assertEquals(PortalWeb.filtrar(ol1).size(), 2);
+		PortalWeb.ResetMuestras();
 	}
 
 }
