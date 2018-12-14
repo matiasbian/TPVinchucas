@@ -226,7 +226,7 @@ class TestParticipante {
 	}
 	
 	@Test
-	void testNoEvolucionDeParticipante() {
+	void testNoEvolucionDeParticipantePorFaltaDeUnaMuestra() {
 		Participante par = new Participante ("Pedro", new ParticipanteBasico());
 		Date d = new Date();
 		m1 = Mockito.mock(Muestra.class);
@@ -245,6 +245,49 @@ class TestParticipante {
 		par.addMuestra(m1);
 		par.addMuestra(m2);
 		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		
+		assertEquals(par.nConocimiento().getClass(),ParticipanteBasico.class);
+	}
+	
+	@Test
+	void testNoEvolucionDeParticipantePorFaltaDeUnaVerificacion() {
+		Participante par = new Participante ("Pedro", new ParticipanteBasico());
+		Date d = new Date();
+		m1 = Mockito.mock(Muestra.class);
+		m2 = Mockito.mock(Muestra.class);
+		Verificacion v = new Verificacion(par,m1,Vinchuca.ChincheFoliada);
+		Verificacion v2 = new Verificacion(par,m2,Vinchuca.ChincheFoliada);
+		Mockito.when(m1.getFechaDeCreacion()).thenReturn(d);
+		Mockito.when(m2.getFechaDeCreacion()).thenReturn(d);
+		par.addMuestra(m1);
+		par.addMuestra(m2);
+		par.addMuestra(m1);
+		par.addMuestra(m2);
+		par.addMuestra(m1);
+		par.addMuestra(m2);
+		par.addMuestra(m1);
+		par.addMuestra(m2);
+		par.addMuestra(m1);
+		par.addMuestra(m2);
 		par.addVerificacion(v2);
 		par.addVerificacion(v);
 		par.addVerificacion(v2);
