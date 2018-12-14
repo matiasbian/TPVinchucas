@@ -310,4 +310,48 @@ class TestParticipante {
 		
 		assertEquals(par.nConocimiento().getClass(),ParticipanteBasico.class);
 	}
+	
+	
+	@Test
+	void testAddMuestraYComprueboDistintoMes() {
+		p = new Participante("Joako221",n1);
+		Date d = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(d);
+		cal.add(Calendar.MONTH,-1);
+		Date newDate = cal.getTime();
+		
+		m1 = Mockito.mock(Muestra.class);
+		m2 = Mockito.mock(Muestra.class);
+		
+		p.addMuestra(m1);
+		p.addMuestra(m2);
+
+		Mockito.when(m1.getFechaDeCreacion()).thenReturn(newDate);
+		Mockito.when(m2.getFechaDeCreacion()).thenReturn(d);
+		
+		assertEquals(p.muestrasMensuales(), 1);
+	}
+	
+	@Test
+	void testAddVerificacionesYComprueboDistintoMes() {
+		p = new Participante("Joako221",n1);
+		Date d = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(d);
+		cal.add(Calendar.MONTH,-1);
+		Date newDate = cal.getTime();
+		
+		v1 = Mockito.mock(Verificacion.class);
+		v2 = Mockito.mock(Verificacion.class);
+		
+		p.addVerificacion(v1);
+		p.addVerificacion(v2);
+
+		Mockito.when(v1.getDate()).thenReturn(newDate);
+		Mockito.when(v2.getDate()).thenReturn(d);
+		
+		assertEquals(p.vMensuales(), 1);
+	}
 }
+

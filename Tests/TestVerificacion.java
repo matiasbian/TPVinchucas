@@ -58,5 +58,12 @@ class TestVerificacion {
 		assertEquals(v.nivelVerif(),1);
 	}
 	
-
+	@Test
+	void testNivelVerificacionBis() {
+		Muestra m2 = Mockito.mock(Muestra.class);
+		v.setMuestra(m2);
+		Mockito.when(m2.tipoVinchucaFotog()).thenReturn(Vinchuca.Vinchuca);
+		v.setVinchucaDetectada(Vinchuca.Vinchuca);
+		assertEquals(v.nivelVerif(),1);
+	}
 }

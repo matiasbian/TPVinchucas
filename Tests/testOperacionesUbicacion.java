@@ -3,6 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.mockito.internal.verification.AtLeast;
@@ -16,11 +17,8 @@ import Vinchucas.ZonaDeCobertura;
 class testOperacionesUbicacion {
 	Ubicacion u1,u2,u3,u4;
 	Muestra m1,m2,m3,m4;
-	@Before
-	void SetUp() {
-		
-		
-	}
+	Ubicacion ubi;
+	ZonaDeCobertura zc;
 	
 	void initUbicaciones() {
 		u1 = Mockito.mock(Ubicacion.class);
@@ -43,8 +41,15 @@ class testOperacionesUbicacion {
 		Mockito.when(m2.getUbicacion()).thenReturn(u2);
 		Mockito.when(m3.getUbicacion()).thenReturn(u3);
 		Mockito.when(m4.getUbicacion()).thenReturn(u4);
+		ubi = new Ubicacion(120, 15);
 	}
 	
+
+	@BeforeEach
+	void Init() {
+		OperacionesUbicacion ou = new OperacionesUbicacion();
+	    zc= new ZonaDeCobertura("Quilmes", ubi, 10000);
+	}
 	
 	@Test
 	void testDistanciaNulaEntreDosPuntos() {
@@ -70,6 +75,7 @@ class testOperacionesUbicacion {
 	
 	@Test
 	void testDosUbicacionesCercanas() {
+		
 		initUbicaciones();
 		Mockito.when(u3.latitud()).thenReturn(71.0);
 		Mockito.when(u3.longitud()).thenReturn(26.0);
@@ -112,5 +118,26 @@ class testOperacionesUbicacion {
 	
 
 
+	@Test
+	void testCeroMuestrasCercanasYSinRepetidosYnotificar() {
+		initUbicaciones();
+		Mockito.when(u3.latitud()).thenReturn(71.0);
+		Mockito.when(u3.longitud()).thenReturn(26.0);
+		Mockito.when(u4.latitud()).thenReturn(69.0);
+		Mockito.when(u4.longitud()).thenReturn(24.0);
+		InitMuestras();
+		
+		ArrayList<Muestra> listaM = new ArrayList<Muestra>();
+		listaM.add(m1);
+		listaM.add(m2);
+		listaM.add(m3);
+		listaM.add(m4);
+		
+		Mockito.when(m4.ubicacion()).thenReturn(ubi);
+		
+		OperacionesUbicacion.notificarOrganizacionDeMuestra(m4);
+		assertEquals(OperacionesUbicacion.muestrasAMenosDe(listaM, 5000).size(),0);
+	}
+	
 	
 }

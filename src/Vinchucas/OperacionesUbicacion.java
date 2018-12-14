@@ -22,21 +22,24 @@ public static double distanciaEntreDosUbicaciones(Ubicacion ubi1, Ubicacion ubi2
 }
 
 public static ArrayList<Ubicacion> ubicacionesAMenosDe(ArrayList<Ubicacion> ubicaciones,float distancia) {
+	
 	ArrayList<Ubicacion> ubics = new ArrayList<Ubicacion>();
+	borroDuplicadosU(ubics);
 	for (Ubicacion u : ubicaciones) {
 		ubics.addAll(ubicacionesCercanas(ubicaciones, u, distancia));
 	}
-	borroDuplicadosU(ubics);
+	
 	return ubics;
 }
 
 public static ArrayList<Muestra> muestrasAMenosDe(ArrayList<Muestra> muestras,float distancia) {
 	
 	ArrayList<Muestra> muestrass = new ArrayList<Muestra>();
+	borroDuplicados(muestrass);
 	for (Muestra m : muestras) {
 		muestrass.addAll(muestrasCercanas(muestrass, m, distancia));
 	}
-	borroDuplicados(muestrass);
+	
 	return muestrass;
 }
 
@@ -72,27 +75,11 @@ private static ArrayList<Ubicacion> ubicacionesCercanas (ArrayList<Ubicacion> ub
 }
 
 private static void borroDuplicados(ArrayList<Muestra> l) {
-	for(int i=0;i<l.size();i++){
-		for(int j=0;j<l.size()-1;j++){
-			if(i!=j){
-				if(l.get(i)==l.get(j)){
-					l.remove(i);
-				}
-			}
-		}
-	}
+	l.clear();
 }
 
 private static void borroDuplicadosU(ArrayList<Ubicacion> l) {
-	for(int i=0;i<l.size();i++){
-		for(int j=0;j<l.size()-1;j++){
-			if(i!=j){
-				if(l.get(i)==l.get(j)){
-					l.remove(i);
-				}
-			}
-		}
-	}
+	l.clear();
 }
 
 public static void notificarOrganizacionDeVerificacion(Muestra m) {

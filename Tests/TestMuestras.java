@@ -17,11 +17,12 @@ import Vinchucas.Verificacion;
 import Vinchucas.Participante;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 class TestMuestras {
 	Muestra muestra1;
-	Ubicacion ubicacion1;
+	Ubicacion ubicacion1, ubicacion2;
 	Participante usuario ;
 	Verificacion v,v2,v3;
 	NivelVerificacion nv;
@@ -32,6 +33,7 @@ class TestMuestras {
 		ubicacion1 = new Ubicacion(120, 15);
 		v = Mockito.mock(Verificacion.class);
 		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
+		ubicacion2 = new Ubicacion(130, 15);
 	}
 	
 
@@ -137,5 +139,15 @@ class TestMuestras {
 		muestra1.addVerificaciones(v);
 		assertEquals(muestra1.verificaciones().size(),1);
 	}
-
+	
+	@Test
+	void testMuestrasLejanas() {
+		muestra1 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion1,usuario);
+		Muestra muestra2 = new Muestra(Vinchuca.Vinchuca,"vinchuca.bmp",ubicacion2,usuario);
+		ArrayList <Muestra> muestrass = new ArrayList();
+		ArrayList <Muestra> muestrass2 = new ArrayList();
+		muestrass.add(muestra1);
+		muestrass.add(muestra2);
+		assertEquals(muestra1.muestrasAMenosDe(muestrass, 30), muestrass2);
+	}
 }
