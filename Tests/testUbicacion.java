@@ -14,15 +14,17 @@ import Vinchucas.Ubicacion;
 import Vinchucas.ZonaDeCobertura;
 
 class testUbicacion {
-	Ubicacion u1,u2,u3,u4;
+	Ubicacion u1,u2,u3,u4,ubi;
 	Muestra m1,m2,m3,m4;
+	ZonaDeCobertura zc;
 	@BeforeEach
 	void initUbicaciones() {
+		ubi = Mockito.mock(Ubicacion.class);
 		u1 = new Ubicacion(100,100);
 		u2 = new Ubicacion(99.5,99.9);
 		u3 = new Ubicacion(100.2,100.1);
 		u4 = new Ubicacion(102,105);
-
+		zc = new ZonaDeCobertura("Zona Sur",ubi,50);
 		InitMuestras();
 	}
 	
@@ -74,8 +76,6 @@ class testUbicacion {
 	
 	@Test
 	void testTresMuestrasCercanas() {
-
-		
 		ArrayList<Muestra> listaM = new ArrayList<Muestra>();
 		listaM.add(m1);
 		listaM.add(m2);
@@ -85,5 +85,15 @@ class testUbicacion {
 		assertEquals(m1.muestrasAMenosDe(listaM, 5000).size(),3);
 	}
 	
-
+	@Test
+	void testEstaEnLaZona() {
+		zc = new ZonaDeCobertura("Zona Sur",u2,90);
+		assertEquals(u1.estaEnLaZona(zc),true);
+	}
+	
+	@Test
+	void testNoEstaEnLaZona() {
+		zc = new ZonaDeCobertura("Zona Sur",u2,1);
+		assertEquals(u1.estaEnLaZona(zc),false);
+	}
 }

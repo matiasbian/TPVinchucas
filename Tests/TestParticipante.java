@@ -184,7 +184,87 @@ class TestParticipante {
 		par.addVerificacion(v2);
 		
 		assertEquals(par.nConocimiento().getClass(),ParticipanteExperto.class);
-
 	}
 	
+	@Test
+	void ParticipanteBasicoQueNoEvoluciona() {
+		Participante par = new Participante ("Pedro", new ParticipanteBasico());
+		Date d = new Date();
+		m1 = Mockito.mock(Muestra.class);
+		m2 = Mockito.mock(Muestra.class);
+		Verificacion v = new Verificacion(par,m1,Vinchuca.ChincheFoliada);
+		Verificacion v2 = new Verificacion(par,m2,Vinchuca.ChincheFoliada);
+		Mockito.when(m1.getFechaDeCreacion()).thenReturn(d);
+		Mockito.when(m2.getFechaDeCreacion()).thenReturn(d);
+		par.addMuestra(m1);
+		par.addMuestra(m2);
+
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		
+		assertEquals(par.nConocimiento().getClass(),ParticipanteBasico.class);
+	}
+	
+	@Test
+	void ParticipanteBasicoQueEvolucionaYDesvoluciona() {
+		Participante par = new Participante ("Pedro", new ParticipanteBasico());
+		Date d = new Date();
+		m1 = Mockito.mock(Muestra.class);
+		m2 = Mockito.mock(Muestra.class);
+		par.setNivelParticipante(new ParticipanteExperto()); //suponemos entrega de papeles
+		Verificacion v = new Verificacion(par,m1,Vinchuca.ChincheFoliada);
+		Verificacion v2 = new Verificacion(par,m2,Vinchuca.ChincheFoliada);
+		Mockito.when(m1.getFechaDeCreacion()).thenReturn(d);
+		Mockito.when(m2.getFechaDeCreacion()).thenReturn(d);
+		par.addMuestra(m1);
+		par.addMuestra(m2);
+
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		
+		assertEquals(par.nConocimiento().getClass(),ParticipanteBasico.class);
+	}
+	
+	@Test
+	void testNoEvolucionDeParticipante() {
+		Participante par = new Participante ("Pedro", new ParticipanteBasico());
+		Date d = new Date();
+		m1 = Mockito.mock(Muestra.class);
+		m2 = Mockito.mock(Muestra.class);
+		Verificacion v = new Verificacion(par,m1,Vinchuca.ChincheFoliada);
+		Verificacion v2 = new Verificacion(par,m2,Vinchuca.ChincheFoliada);
+		Mockito.when(m1.getFechaDeCreacion()).thenReturn(d);
+		Mockito.when(m2.getFechaDeCreacion()).thenReturn(d);
+		par.addMuestra(m2);
+		par.addMuestra(m1);
+		par.addMuestra(m2);
+		par.addMuestra(m1);
+		par.addMuestra(m2);
+		par.addMuestra(m1);
+		par.addMuestra(m2);
+		par.addMuestra(m1);
+		par.addMuestra(m2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		par.addVerificacion(v);
+		par.addVerificacion(v2);
+		
+		assertEquals(par.nConocimiento().getClass(),ParticipanteBasico.class);
+	}
 }
